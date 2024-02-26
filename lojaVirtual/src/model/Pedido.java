@@ -17,6 +17,9 @@ public class Pedido {
         this.listaDeItens = new ArrayList<>();
     }
 
+    public Pedido() {
+    }
+
     public double valorTotal(){
         double total = 0;
         for (Item item : listaDeItens){
@@ -31,6 +34,18 @@ public class Pedido {
     
     public Pessoa getCliente() {
         return cliente;
+    }
+
+    public LocalDateTime getDataDoPedido() {
+        return dataDoPedido;
+    }
+
+    public void setDataDoPedido(LocalDateTime dataDoPedido) {
+        this.dataDoPedido = dataDoPedido;
+    }
+
+    public List<Item> getListaDeItens() {
+        return listaDeItens;
     }
 
     @Override

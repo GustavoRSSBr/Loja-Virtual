@@ -44,4 +44,8 @@ public class ControleUsuario {
     public void cadastrarUsuario(Usuario usuario) {
         this.listaDeUsuarios.add(usuario);
     }
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
 }

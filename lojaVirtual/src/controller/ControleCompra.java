@@ -1,24 +1,30 @@
 package controller;
 
+import model.Item;
+import model.Pedido;
+import model.Pessoa;
+import model.Produto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class ControleCompra {
 	
 	
 	private ControleEstoque controleEstoque;
 	
 	private ControleUsuario controleUsuario;
-	
+
+    private Pessoa pessoaDoPedido;
+
+    private Pedido pedidoDoCliente;
 	public ControleCompra(ControleEstoque controleEstoque, ControleUsuario controleUsuario) {
 		this.controleEstoque = controleEstoque;
 		this.controleUsuario = controleUsuario;
+        this.pessoaDoPedido = controleUsuario.getUsuarioLogado().getPessoa();
+        this.pedidoDoCliente = new Pedido();
 	}
-	
-	Pessoa pessoaDoPedido = controleUsuario.getPessoa();
-	
-	Pedido pedido = new Pedido();
-	pedido.setDataPedido(LocalDateTime.now());
-	pedido.setCliente(pessoaDoPedido);
-	
-	
+
 	public void escolherItem(int id,int quantidade) {
 		controleEstoque.listar();
 		
@@ -28,26 +34,24 @@ public class ControleCompra {
 		
 	}
 	public void limparPedido() {
-		
-		List<Itens> listaDeItensDoPedido = pedido.getListaDeItens();
+		List<Item> listaDeItensDoPedido = pedidoDoCliente.getListaDeItens();
 		listaDeItensDoPedido = null;
-		
-	}
-	public double depositar(double saldo) {
-		pessoaDoPedido.setSaldo() = pessoaDoPedido.getSaldo() + saldo;
-		
-		
-		
-		return pessoaDoPedido.getSaldo();
-	
-		
-	}
-	public double comprar() {
-	pessoaDoPedido.setSaldo() = pessoaDoPedido.getSaldo() - pedido.getTotal();
-	
-	return pessoa.getSaldo();
-	
-	
 	}
 
+	public void depositar(double saldo) {
+        double novoSaldo = pessoaDoPedido.getSaldo() + saldo;
+        pessoaDoPedido.setSaldo(novoSaldo);
+	}
+
+	public void comprar() {
+        double saldoDocliente = pessoaDoPedido.getSaldo();
+        double valorDoPedido = pedidoDoCliente.valorTotal();
+
+        if(saldoDocliente >= valorDoPedido){
+            double novoSaldo = saldoDocliente - valorDoPedido;
+            pessoaDoPedido.setSaldo(novoSaldo);
+        }else{
+            System.out.println("Saldo Insuficiente");
+        }
+	}
 }
