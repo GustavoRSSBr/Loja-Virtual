@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-class Pessoa {
+public class Pessoa {
 	private List<Pessoa> usuarios;
 
 	public Pessoa() {

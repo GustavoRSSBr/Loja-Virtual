@@ -1,4 +1,8 @@
 package view;
+import controller.ControleCompra;
+import controller.ControleEstoque;
+import controller.ControleUsuario;
+
 import java.util.Scanner;
 
 public class View {
