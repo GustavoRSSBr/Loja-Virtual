@@ -1,8 +1,6 @@
 package controller;
-
 import model.Item;
 import model.Produto;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +32,8 @@ public class ControleEstoque {
         if (produtoRemovido != null) {
             produtos.remove(produtoRemovido);
             System.out.println("Produto removido com sucesso");
+        }else{
+            System.out.println("Não foi possível remover o produto");
         }
     }
 
@@ -46,8 +46,14 @@ public class ControleEstoque {
         }
     }
 
-    public void cadastrarProduto(Produto produto) {
-        produtos.add(produto);
+    public boolean cadastrarProduto(Produto produto) {
+        if (!produtos.contains(produto)) {
+            produtos.add(produto);
+            return true;
+        } else {
+            System.out.println("O produto " + produto.getMarca() + " já está cadastrado!");
+            return false;
+        }
     }
 
     public void listar() {
@@ -97,7 +103,6 @@ public class ControleEstoque {
                 return false;
             }
         }
-
         return true;
     }
 }

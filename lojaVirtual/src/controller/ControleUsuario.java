@@ -17,8 +17,7 @@ public class ControleUsuario {
     }
 
 
-
-    public boolean logar(String email, String senha){
+    public boolean logar(String email, String senha) {
         for (Usuario usuario : this.listaDeUsuarios) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
                 usuarioLogado = usuario;
@@ -28,7 +27,7 @@ public class ControleUsuario {
         return false;
     }
 
-    public void deslogar(){
+    public void deslogar() {
         usuarioLogado = null;
     }
 

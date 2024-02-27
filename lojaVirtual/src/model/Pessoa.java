@@ -25,7 +25,6 @@ public class Pessoa {
 	public Pessoa(String nome, String endereco, String telefone, 
 			LocalDate datadenascimento, double saldo) {
 		this.nome = nome;
-
 		this.endereco = endereco;
 		this.datadenascimento = datadenascimento;
 		this.telefone = telefone;
