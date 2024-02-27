@@ -27,6 +27,14 @@ public class Item {
         this.subTotal = subTotal;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
     // Exibir informações do item
     @Override
     public String toString() {

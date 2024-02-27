@@ -3,16 +3,17 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 //Classe Pedido
 public class Pedido {
-    private String numeroPedido;
+    private UUID numeroPedido;
     private Pessoa cliente;
     private LocalDateTime dataDoPedido;
     private List<Item> listaDeItens;
     
-    public Pedido(String numeroPedido, Pessoa cliente) {
-        this.numeroPedido = numeroPedido;
+    public Pedido(Pessoa cliente) {
+        this.numeroPedido = UUID.randomUUID();
         this.cliente = cliente;
         this.listaDeItens = new ArrayList<>();
     }
@@ -28,7 +29,7 @@ public class Pedido {
         return total;
     }
     
-    public String getNumeroPedido() {
+    public UUID getNumeroPedido() {
         return numeroPedido;
     }
     

@@ -5,12 +5,7 @@ import model.Pedido;
 import model.Pessoa;
 import model.Produto;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 public class ControleCompra {
-	
-	
 	private ControleEstoque controleEstoque;
 	
 	private ControleUsuario controleUsuario;
@@ -22,20 +17,20 @@ public class ControleCompra {
 		this.controleEstoque = controleEstoque;
 		this.controleUsuario = controleUsuario;
         this.pessoaDoPedido = controleUsuario.getUsuarioLogado().getPessoa();
-        this.pedidoDoCliente = new Pedido();
+        this.pedidoDoCliente = new Pedido(controleUsuario.getUsuarioLogado().getPessoa());
 	}
 
-	public void escolherItem(int id,int quantidade) {
-		controleEstoque.listar();
-		
+	public void escolherItem(String id,int quantidade) {
 		Produto produtoDoEstoque = controleEstoque.buscarProduto(id);
-		Item receberItem = new Item(produtoDoEstoque, quantidade);
-	
-		
+
+		if(controleEstoque.verificarQuantidadeNoEstoque(produtoDoEstoque, quantidade)){
+			pedidoDoCliente.getListaDeItens().add(new Item(produtoDoEstoque, quantidade));
+		} else {
+			System.out.println("Produto ou quantidade indisponível");
+		}
 	}
 	public void limparPedido() {
-		List<Item> listaDeItensDoPedido = pedidoDoCliente.getListaDeItens();
-		listaDeItensDoPedido = null;
+		pedidoDoCliente.getListaDeItens().clear();
 	}
 
 	public void depositar(double saldo) {
@@ -44,14 +39,18 @@ public class ControleCompra {
 	}
 
 	public void comprar() {
-        double saldoDocliente = pessoaDoPedido.getSaldo();
-        double valorDoPedido = pedidoDoCliente.valorTotal();
+		double saldoDocliente = pessoaDoPedido.getSaldo();
+		double valorDoPedido = pedidoDoCliente.valorTotal();
 
-        if(saldoDocliente >= valorDoPedido){
-            double novoSaldo = saldoDocliente - valorDoPedido;
-            pessoaDoPedido.setSaldo(novoSaldo);
-        }else{
-            System.out.println("Saldo Insuficiente");
-        }
+		if(saldoDocliente >= valorDoPedido){
+			if(controleEstoque.removerQuantidadeDoEstoque(pedidoDoCliente.getListaDeItens())){
+				double novoSaldo = saldoDocliente - valorDoPedido;
+				pessoaDoPedido.setSaldo(novoSaldo);
+			}else{
+				System.out.println("Erro ao atualizar o estoque");
+			}
+		}else{
+			System.out.println("Saldo Insuficiente");
+		}
 	}
 }

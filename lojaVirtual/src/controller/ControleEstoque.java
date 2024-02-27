@@ -1,8 +1,10 @@
 package controller;
 
+import model.Item;
 import model.Produto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControleEstoque {
 
@@ -48,11 +50,54 @@ public class ControleEstoque {
         produtos.add(produto);
     }
 
-    public void listar(){
-        for(Produto p : produtos){
+    public void listar() {
+        for (Produto p : produtos) {
             System.out.println(p);
         }
     }
 
+    public boolean removerQuantidadeDoProdutoDoEstoque(Produto produto, int quantidade) {
+        for (Produto p : produtos) {
+            if (p.equals(produto)) {
+                if (p.getQuantidadeEmEstoque() >= quantidade) {
+                    p.setQuantidadeEmEstoque(p.getQuantidadeEmEstoque() - quantidade);
+                    return true;
+                } else {
+                    System.out.println("Produto não disponível em quantidade suficiente");
+                }
+            }
+        }
+        return false;
+    }
 
+
+    public boolean verificarQuantidadeNoEstoque(Produto produtoDoEstoque, int quantidade) {
+        for (Produto p : produtos) {
+            if (p.equals(produtoDoEstoque)) {
+                if (p.getQuantidadeEmEstoque() >= quantidade) {
+                    return true;
+                } else {
+                    System.out.println("Produto não disponível em quantidade suficiente");
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean removerQuantidadeDoEstoque(List<Item> listaDeItens) {
+
+        for(Item item : listaDeItens){
+
+            Produto produtoDoEstoque = item.getProduto();
+            int quantidade = item.getQuantidade();
+
+            boolean remocaoBemSucedida = removerQuantidadeDoProdutoDoEstoque(produtoDoEstoque, quantidade);
+
+            if(!remocaoBemSucedida){
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

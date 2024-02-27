@@ -82,7 +82,7 @@ public class Produto {
         return quantidadeEmEstoque;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidadeEmEstoque(int quantidade) {
         this.quantidadeEmEstoque = quantidade;
     }
 
