@@ -6,19 +6,30 @@ import model.Pessoa;
 import model.Produto;
 
 public class ControleCompra {
-	private ControleEstoque controleEstoque;
+	private final ControleEstoque controleEstoque;
 	
-	private ControleUsuario controleUsuario;
+	private final ControleUsuario controleUsuario;
 
-    private Pessoa pessoaDoPedido;
+	private Pessoa pessoaDoPedido;
+	private Pedido pedidoDoCliente;
 
-    private Pedido pedidoDoCliente;
+
+
 	public ControleCompra(ControleEstoque controleEstoque, ControleUsuario controleUsuario) {
 		this.controleEstoque = controleEstoque;
 		this.controleUsuario = controleUsuario;
-        this.pessoaDoPedido = controleUsuario.getUsuarioLogado().getPessoa();
-        this.pedidoDoCliente = new Pedido(controleUsuario.getUsuarioLogado().getPessoa());
 	}
+
+	public void iniciarCompra(){
+		pessoaDoPedido = controleUsuario.getUsuarioLogado().getPessoa();
+		pedidoDoCliente = new Pedido(pessoaDoPedido);
+	}
+
+	public void mostrarPedido(){
+		System.out.println(pedidoDoCliente);
+	}
+
+
 
 	public void escolherItem(String id,int quantidade) {
 		Produto produtoDoEstoque = controleEstoque.buscarProduto(id);
@@ -46,6 +57,7 @@ public class ControleCompra {
 			if(controleEstoque.removerQuantidadeDoEstoque(pedidoDoCliente.getListaDeItens())){
 				double novoSaldo = saldoDocliente - valorDoPedido;
 				pessoaDoPedido.setSaldo(novoSaldo);
+				limparPedido();
 			}else{
 				System.out.println("Erro ao atualizar o estoque");
 			}

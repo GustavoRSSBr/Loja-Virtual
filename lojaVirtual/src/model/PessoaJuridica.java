@@ -2,14 +2,13 @@ package model;
 
 import java.time.LocalDate;
 
-class PessoaJuridica extends Pessoa {
+public class PessoaJuridica extends Pessoa {
     private String cnpj;
    
    
     public PessoaJuridica(String nome, String endereco, String cnpj, String telefone, 
-    		LocalDate datadenascimento, double saldo) {
-    	super(nome, endereco, telefone, datadenascimento,saldo );
-		
+    		LocalDate datadenascimento) {
+    	super(nome, endereco, telefone, datadenascimento);
         this.cnpj = cnpj;
        
     }
@@ -28,8 +27,6 @@ class PessoaJuridica extends Pessoa {
 	public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-	
 }
 
 

@@ -8,7 +8,7 @@ public class Item {
     public Item(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
-        this.subTotal = produto.getPrecoCusto() * quantidade;
+        this.subTotal = produto.getPrecoVenda() * quantidade;
     }
 
     public Produto getProduto() {

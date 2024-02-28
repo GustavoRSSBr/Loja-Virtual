@@ -16,6 +16,7 @@ public class Pedido {
         this.numeroPedido = UUID.randomUUID();
         this.cliente = cliente;
         this.listaDeItens = new ArrayList<>();
+        this.dataDoPedido = LocalDateTime.now();
     }
 
     public Pedido() {

@@ -12,12 +12,17 @@ public class Main {
 
         // Configurar as instâncias na View
         View view = new View();
-       
         view.setControleCompra(controleCompra);
         view.setControleUsuario(controleUsuario);
         view.setControleEstoque(controleEstoque);
 
         // Rodar o menu principal
-        view.menuPrincipal();
+        try {
+            view.menuPrincipal();
+        }catch (Exception e){
+            System.out.println("Ocorreu um erro");
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -105,4 +105,11 @@ public class ControleEstoque {
         }
         return true;
     }
+
+    public boolean acrescentarProdutoNoEstoque(String id, int quantidade){
+        Produto produto = buscarProduto(id);
+        produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() + quantidade);
+        return true;
+
+    }
 }

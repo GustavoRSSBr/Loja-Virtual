@@ -5,30 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pessoa {
-	private List<Pessoa> usuarios;
-
-	public Pessoa() {
-		usuarios = new ArrayList<>();
-	}
-
-	public List<Pessoa> getUsuarios() {
-		return usuarios;
-	}
-
 	private String nome;
-
 	private String endereco;
 	private String telefone;
 	private LocalDate datadenascimento;
 	private double saldo;
 
 	public Pessoa(String nome, String endereco, String telefone, 
-			LocalDate datadenascimento, double saldo) {
+			LocalDate datadenascimento) {
 		this.nome = nome;
 		this.endereco = endereco;
-		this.datadenascimento = datadenascimento;
 		this.telefone = telefone;
-		this.saldo = saldo;
+		this.datadenascimento = datadenascimento;
+		this.saldo = 100.0;
+	}
+
+	public Pessoa(){
 	}
 
 	public String getNome() {
