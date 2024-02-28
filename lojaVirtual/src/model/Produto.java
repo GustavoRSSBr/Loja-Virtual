@@ -89,15 +89,15 @@ public class Produto {
 
     @Override
     public String toString() {
-        return 
-        "Id: " + id +
-        "\nMarca: " + marca +
-        "\nModelo: " + modelo +
-        "\nCor: " + cor +
-        "\nTamanho: " + tamanho + 
-        "\nPreço de Custo: R$" + precoCusto +
-        "\nPreço de Venda: R$" + precoVenda +
-        "\nQuantidade no estoque: " + quantidadeEmEstoque;
+        return "\n-------------------------------" +
+                "\nId: " + id +
+                "\nMarca: " + marca +
+                "\nModelo: " + modelo +
+                "\nCor: " + cor +
+                "\nTamanho: " + tamanho +
+                "\nPreço de Venda: R$" + precoVenda +
+                "\nQuantidade no estoque: " + quantidadeEmEstoque +
+                "\n-------------------------------";
     }
 }
 

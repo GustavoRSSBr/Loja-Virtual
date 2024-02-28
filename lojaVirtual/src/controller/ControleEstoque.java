@@ -110,6 +110,5 @@ public class ControleEstoque {
         Produto produto = buscarProduto(id);
         produto.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque() + quantidade);
         return true;
-
     }
 }

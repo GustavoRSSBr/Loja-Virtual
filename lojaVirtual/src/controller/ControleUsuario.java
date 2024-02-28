@@ -11,7 +11,6 @@ public class ControleUsuario {
     private static final String REGEX_SENHA = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
     private Usuario usuarioLogado;
     public List<Usuario> listaDeUsuarios = new ArrayList<>();
-
     private final String emailADM = "admin@email.com";
     private final String senhaADM = "Admin#123";
     private String permissao = "DESLOGADO";
@@ -24,7 +23,6 @@ public class ControleUsuario {
         Pattern pattern = Pattern.compile(REGEX_SENHA);
         return pattern.matcher(senha).matches();
     }
-
 
     public boolean logar(String email, String senha) {
         for (Usuario usuario : this.listaDeUsuarios) {

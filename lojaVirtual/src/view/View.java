@@ -8,6 +8,7 @@ import util.ValidadorCPFouCNPJ;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class View {
@@ -47,37 +48,38 @@ public class View {
 
     public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
-        int opcao;
-        do {
-            System.out.println("----- Menu Principal -----");
-            System.out.println("1. Menu de Usuário");
-            if (controleUsuario.getPermissao().equals("ADM")) {
-                System.out.println("2. Menu Estoque");
-            } else if (controleUsuario.getPermissao().equals("CLIENTE")) {
-                System.out.println("2. Menu Compras");
-            }
-            System.out.println("3. Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            switch (opcao) {
-                case 1:
-                    menuUsuario(scanner);
-                    break;
-                case 2:
-                    if (controleUsuario.getPermissao().equals("ADM")) {
-                        menuEstoque(scanner);
-                    } else if (controleUsuario.getPermissao().equals("CLIENTE")) {
-                        menuCompras(scanner);
-                    }
-                    break;
-                case 3:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-            }
-        } while (opcao != 4);
-        scanner.close();
+        int opcao = 0;
+        while(true){
+                System.out.println("----- Menu Principal -----");
+                System.out.println("1. Menu de Usuário");
+                if (controleUsuario.getPermissao().equals("ADM")) {
+                    System.out.println("2. Menu Estoque");
+                } else if (controleUsuario.getPermissao().equals("CLIENTE")) {
+                    System.out.println("2. Menu Compras");
+                }
+                System.out.println("3. Sair");
+                System.out.print("Escolha uma opção: ");
+                opcao = scanner.nextInt();
+                switch (opcao) {
+
+                    case 1:
+                        menuUsuario(scanner);
+                        break;
+                    case 2:
+                        if (controleUsuario.getPermissao().equals("ADM")) {
+                            menuEstoque(scanner);
+                        } else if (controleUsuario.getPermissao().equals("CLIENTE")) {
+                            menuCompras(scanner);
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Saindo...");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("Opção inválida. Tente novamente.");
+                }
+        }
     }
 
     public void menuCompras(Scanner scanner) {
