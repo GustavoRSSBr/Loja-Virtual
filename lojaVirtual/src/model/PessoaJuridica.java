@@ -19,9 +19,9 @@ public class PessoaJuridica extends Pessoa {
 
     @Override
 	public String toString() {
-		return "PessoaJuridica [cnpj=" + cnpj  + ", getNome()=" + getNome()
-				+ ", getEndereco()=" + getEndereco() + ", getTelefone()=" + getTelefone() + ", getDatadenascimento()="
-				+ getDatadenascimento() + ", getSaldo()=" + getSaldo() + "]";
+		return "\n cnpj= " + cnpj + "\n nome= " + getNome()
+		+ "\n Endereço= " + getEndereco() + "\n Telefone= " + getTelefone() + "\n Data de Nascimento="
+		+ getDatadenascimento() + "\n Saldo= " + getSaldo();
 	}
 
 	public void setCnpj(String cnpj) {

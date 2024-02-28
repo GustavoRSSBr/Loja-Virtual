@@ -22,9 +22,9 @@ public class PessoaFisica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "PessoaFisica [cpf=" + cpf + ", getNome()=" + getNome()
-				+ ", getEndereco()=" + getEndereco() + ", getTelefone()=" + getTelefone() + ", getDatadenascimento()="
-				+ getDatadenascimento() + ", getSaldo()=" + getSaldo() + "]";
+		return "\n cpf= " + cpf + "\n nome= " + getNome()
+				+ "\n Endereço= " + getEndereco() + "\n Telefone= " + getTelefone() + "\n Data de Nascimento= "
+				+ getDatadenascimento() + "\n Saldo= " + getSaldo();
 	}
 
 
