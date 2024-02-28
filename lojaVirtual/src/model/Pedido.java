@@ -1,12 +1,15 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 //Classe Pedido
 public class Pedido {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private UUID numeroPedido;
     private Pessoa cliente;
     private LocalDateTime dataDoPedido;
@@ -55,7 +58,7 @@ public class Pedido {
         return
         "Numero do Pedido: " + numeroPedido +
         "\nCliente: " + cliente +
-        "\nData do Pedido: " + dataDoPedido +
+        "\nData do Pedido: " +  dataDoPedido.format(formatter) +
         "\nLista de Itens: " + listaDeItens +
         "\nValor total: R$" + valorTotal();
     }
